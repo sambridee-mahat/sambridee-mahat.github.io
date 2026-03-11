@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — Sambridee Mahat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F5F2; --surface: #FFFFFF; --border: #E8E4DE;
+      --text: #1A1814; --muted: #8A8278; --accent2: #C17D3C; --tag-bg: #EEE9E1;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,245,242,0.93); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0 60px; height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-name { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 13px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    .container { max-width: 820px; margin: 0 auto; padding: 0 60px; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 140px 0 60px; border-bottom: 1px solid var(--border); }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
+      color: var(--accent2); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .page-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent2); }
+    .page-title { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 400; letter-spacing: -1.2px; color: var(--text); margin-bottom: 18px; line-height: 1.1; }
+    .page-sub { font-size: 18px; color: var(--muted); line-height: 1.8; max-width: 520px; }
+
+    /* POSTS */
+    .posts-section { padding: 64px 0; }
+    .posts-list { display: flex; flex-direction: column; gap: 0; }
+
+    .post-item {
+      display: grid; grid-template-columns: 120px 1fr;
+      gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--border);
+      text-decoration: none; color: inherit;
+      transition: background 0.15s;
+    }
+    .post-item:first-child { padding-top: 0; }
+    .post-item:last-child { border-bottom: none; }
+    .post-item:hover .post-title { color: var(--accent2); }
+
+    .post-date-col { padding-top: 4px; }
+    .post-date { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .post-month { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; }
+
+    .post-tag {
+      display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; padding: 2px 10px;
+      background: var(--tag-bg); color: var(--muted); margin-bottom: 10px;
+    }
+    .post-title {
+      font-family: 'DM Serif Display', serif; font-size: 22px;
+      letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 10px;
+      color: var(--text); transition: color 0.2s;
+    }
+    .post-excerpt { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+    .post-read-more {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .post-read-more svg { transition: transform 0.2s; }
+    .post-item:hover .post-read-more svg { transform: translateX(3px); }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center; padding: 80px 40px;
+      border: 2px dashed var(--border); background: var(--surface);
+    }
+    .empty-state h3 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.5px; margin-bottom: 14px; color: var(--text); }
+    .empty-state p { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 400px; margin: 0 auto 28px; }
+
+    /* HOW TO ADD POSTS */
+    .add-post-guide {
+      margin-top: 60px; padding: 32px 36px;
+      background: var(--surface); border: 1px solid var(--border);
+    }
+    .add-post-guide h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 18px; letter-spacing: -0.4px; }
+    .guide-steps { display: flex; flex-direction: column; gap: 14px; }
+    .guide-step { display: flex; gap: 16px; align-items: flex-start; }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--text); color: #fff;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .guide-step p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .guide-step code { font-size: 13px; background: var(--tag-bg); padding: 1px 7px; border-radius: 2px; color: var(--text); }
+
+    footer { padding: 36px 60px; text-align: center; font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); }
+
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .container { padding: 0 22px; }
+      .page-header { padding: 106px 0 48px; }
+      .post-item { grid-template-columns: 1fr; gap: 6px; }
+      .post-date-col { display: flex; gap: 8px; align-items: center; }
+      footer { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Sambridee Mahat</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <div class="page-eyebrow">Writing</div>
+    <h1 class="page-title">Blog</h1>
+    <p class="page-sub">Sharing what I'm learning — data engineering, AI pipelines, tools, and the journey of building in public.</p>
+  </div>
+</div>
+
+<div class="posts-section">
+  <div class="container">
+
+    <!-- ═══════════════════════════════════════════════
+         POSTS LIST
+         To add a new post:
+         1. Copy the .post-item block below
+         2. Update date, tag, title, excerpt, and link
+         3. Create a new file like  blog-post-1.html
+            (copy the post template at the bottom of this file)
+         4. Upload both files to GitHub
+    ════════════════════════════════════════════════ -->
+
+    <div class="posts-list fade-up">
+
+      <!--
+        SAMPLE POST — uncomment and edit when you're ready to publish your first post.
+        Delete the empty-state div below when you add your first real post.
+
+      <a class="post-item" href="blog-post-1.html">
+        <div class="post-date-col">
+          <div class="post-date">March 2025</div>
+        </div>
+        <div>
+          <span class="post-tag">Data Engineering</span>
+          <div class="post-title">What I learned building my first Airflow DAG</div>
+          <p class="post-excerpt">I spent three days debugging a pipeline that wasn't broken. Here's what actually went wrong, and what it taught me about orchestration tools.</p>
+          <span class="post-read-more">Read post <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      -->
+
+      <!-- EMPTY STATE — delete this once you add your first post -->
+      <div class="empty-state">
+        <h3>First post coming soon.</h3>
+        <p>I'll be writing about what I learn building data pipelines, earning certifications, and navigating the AI-era job market.</p>
+        <a href="index.html#contact" style="font-size:14px;font-weight:600;color:var(--accent2);text-decoration:none;">Get notified → Follow on LinkedIn</a>
+      </div>
+
+    </div>
+
+    <!-- HOW TO ADD POSTS GUIDE -->
+    <div class="add-post-guide fade-up">
+      <h3>How to publish a blog post</h3>
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <p>Copy the file <code>blog-post-template.html</code> and rename it something like <code>blog-dbt-learnings.html</code>.</p>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <p>Edit the title, date, and body content inside the template. Use plain HTML — headings, paragraphs, and code blocks are all pre-styled.</p>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <p>In this file (<code>blog.html</code>), copy the sample post block above, uncomment it, and update the <code>href</code>, title, date, and excerpt to match your new post.</p>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">4</div>
+          <p>Upload both files to your GitHub repo. Your post will appear live within 30 seconds.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Sambridee Mahat · <a href="index.html" style="color:var(--accent2);text-decoration:none;">Back to portfolio</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sambridee Mahat — Data Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F5F2;
+      --surface: #FFFFFF;
+      --border: #E8E4DE;
+      --text: #1A1814;
+      --muted: #8A8278;
+      --accent2: #C17D3C;
+      --tag-bg: #EEE9E1;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,245,242,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px; height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif; font-size: 19px;
+      color: var(--text); text-decoration: none; letter-spacing: -0.3px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+    section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+
+    /* HERO */
+    #hero { padding-top: 148px; padding-bottom: 110px; border-bottom: 1px solid var(--border); }
+    .hero-inner { display: grid; grid-template-columns: 1fr 300px; gap: 80px; align-items: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
+      color: var(--accent2); text-transform: uppercase; margin-bottom: 22px;
+    }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent2); }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(40px, 4.5vw, 64px); font-weight: 400;
+      line-height: 1.08; letter-spacing: -1.5px; color: var(--text); margin-bottom: 26px;
+    }
+    h1 em { font-style: italic; color: var(--accent2); }
+    .hero-sub { font-size: 18px; color: var(--muted); line-height: 1.8; margin-bottom: 38px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 12px 26px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      letter-spacing: 0.3px; text-decoration: none; cursor: pointer;
+      border: none; transition: all 0.2s; border-radius: 2px;
+    }
+    .btn-primary { background: var(--text); color: #fff; }
+    .btn-primary:hover { background: #333; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--text); transform: translateY(-1px); }
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 60px;
+      padding-top: 44px; border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; letter-spacing: -1px; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* Hero photo */
+    .hero-photo {
+      width: 260px; height: 320px; border: 1px solid var(--border);
+      background: var(--surface); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-photo-placeholder {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; color: var(--muted); text-align: center; padding: 24px;
+    }
+    .hero-photo-placeholder p { font-size: 13px; line-height: 1.6; }
+    .hero-photo-hint { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+    /* SECTION HEADERS */
+    .section-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 2px;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 3.5vw, 40px); font-weight: 400;
+      letter-spacing: -0.8px; color: var(--text); margin-bottom: 48px;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 300px; gap: 72px; align-items: start; }
+    .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 20px; font-size: 17px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+    .detail-row { padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .detail-row:first-child { padding-top: 0; }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-key { font-size: 11px; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+    .detail-val { font-size: 15px; color: var(--text); font-weight: 500; }
+
+    /* EDUCATION */
+    .edu-list { display: flex; flex-direction: column; gap: 20px; }
+    .edu-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 28px 32px; display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 24px;
+    }
+    .edu-left { flex: 1; }
+    .edu-degree { font-family: 'DM Serif Display', serif; font-size: 21px; letter-spacing: -0.3px; margin-bottom: 5px; }
+    .edu-school { font-size: 15px; color: var(--muted); }
+    .edu-right { text-align: right; flex-shrink: 0; min-width: 150px; }
+    .edu-date { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+    .edu-gpa {
+      font-size: 14px; font-weight: 600; color: var(--accent2);
+      background: #FDF5EB; border: 1px solid #F0D9B5; padding: 4px 12px; display: inline-block;
+    }
+    .edu-courses { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .skill-group { background: var(--surface); border: 1px solid var(--border); padding: 26px 28px; }
+    .skill-group-title {
+      font-size: 12px; font-weight: 600; letter-spacing: 1.5px; color: var(--muted);
+      text-transform: uppercase; margin-bottom: 16px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag { font-size: 13px; font-weight: 500; padding: 5px 12px; background: var(--tag-bg); color: var(--text); border-radius: 2px; }
+    .tag.highlight { background: #1A1814; color: #fff; }
+
+    /* CERTIFICATIONS */
+    .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cert-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 24px; display: flex; flex-direction: column;
+      align-items: center; text-align: center; gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cert-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .cert-img-wrap {
+      width: 100%; height: 136px; border: 1px dashed var(--border);
+      background: var(--bg); display: flex; align-items: center;
+      justify-content: center; overflow: hidden;
+    }
+    .cert-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+    .cert-img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 7px; color: var(--muted); }
+    .cert-img-placeholder span { font-size: 11px; letter-spacing: 0.3px; }
+    .cert-name { font-family: 'DM Serif Display', serif; font-size: 17px; letter-spacing: -0.3px; line-height: 1.3; }
+    .cert-issuer { font-size: 14px; color: var(--muted); }
+    .cert-badge {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--accent2); background: #FDF5EB; border: 1px solid #F0D9B5; padding: 3px 12px;
+    }
+    .cert-slot {
+      background: var(--surface); border: 2px dashed var(--border);
+      padding: 36px 20px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; gap: 10px;
+      color: var(--muted); min-height: 268px;
+    }
+    .cert-slot span { font-size: 14px; line-height: 1.65; }
+    .cert-slot em { font-size: 13px; }
+    .certs-note {
+      margin-top: 22px; font-size: 15px; color: var(--muted);
+      line-height: 1.75; padding: 18px 22px;
+      background: var(--surface); border: 1px solid var(--border);
+    }
+    .certs-note code { font-size: 13px; background: var(--tag-bg); padding: 1px 7px; border-radius: 2px; }
+
+    /* PROJECTS */
+    .projects-intro { font-size: 17px; color: var(--muted); margin-bottom: 40px; max-width: 600px; line-height: 1.8; }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 30px; display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: inherit;
+    }
+    .project-card:hover { border-color: var(--text); transform: translateY(-2px); }
+    .project-card.wip { opacity: 0.55; pointer-events: none; }
+    .project-status {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .dot-live { background: #22C55E; box-shadow: 0 0 6px #22C55E88; }
+    .dot-wip { background: #F59E0B; }
+    .project-title { font-family: 'DM Serif Display', serif; font-size: 21px; letter-spacing: -0.4px; margin-bottom: 10px; line-height: 1.25; }
+    .project-desc { font-size: 15px; color: var(--muted); line-height: 1.75; flex: 1; margin-bottom: 20px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .project-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; padding: 4px 10px; background: var(--tag-bg); color: var(--muted); }
+    .project-link { font-size: 13px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; margin-top: auto; }
+    .project-link svg { transition: transform 0.2s; }
+    .project-card:hover .project-link svg { transform: translateX(3px); }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid; grid-template-columns: 190px 1fr;
+      gap: 44px; padding: 34px 0; border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date { font-size: 13px; color: var(--muted); padding-top: 3px; line-height: 1.6; }
+    .exp-role { font-family: 'DM Serif Display', serif; font-size: 21px; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .exp-company { font-size: 15px; color: var(--muted); margin-bottom: 14px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li { font-size: 15px; color: var(--muted); line-height: 1.75; padding-left: 18px; position: relative; }
+    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: #D4CFC8; font-size: 11px; top: 3px; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-text { font-size: 17px; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      text-decoration: none; color: var(--text); padding: 16px 18px;
+      border: 1px solid var(--border); background: var(--surface);
+      transition: border-color 0.2s, transform 0.15s; font-size: 15px; font-weight: 500;
+    }
+    .contact-link:hover { border-color: var(--text); transform: translateX(4px); }
+    .contact-icon { font-size: 17px; width: 22px; text-align: center; }
+    .contact-right h3 { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.5px; margin-bottom: 22px; }
+    .contact-form { display: flex; flex-direction: column; gap: 13px; }
+    .contact-form input, .contact-form textarea {
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
+      padding: 13px 16px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text); outline: none;
+      transition: border-color 0.2s; border-radius: 2px; width: 100%;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--text); }
+    .contact-form textarea { height: 120px; resize: vertical; }
+
+    footer {
+      padding: 36px 60px; text-align: center;
+      font-size: 14px; color: var(--muted); border-top: 1px solid var(--border);
+    }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero-inner, .about-grid { grid-template-columns: 1fr; }
+      .hero-photo-wrap { display: none; }
+      .certs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .container { padding: 0 22px; }
+      section { padding: 64px 0; }
+      #hero { padding-top: 106px; }
+      .skills-grid, .projects-grid, .contact-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .edu-card { flex-direction: column; }
+      .edu-right { text-align: left; min-width: unset; }
+      footer { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-name">Sambridee Mahat</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Data Engineer &amp; Analytics Professional</div>
+        <h1>Building pipelines<br>that power <em>smarter</em><br>decisions.</h1>
+        <p class="hero-sub">
+          MS in Business Analytics (4.0 GPA) · University of New Haven.<br>
+          Specializing in end-to-end data engineering, AI pipelines, and modern DE tooling.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+          <a href="resume.pdf" class="btn btn-outline" download>Download CV</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-num">4.0</div><div class="stat-label">Graduate GPA</div></div>
+          <div><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+          <div><div class="stat-num">5+</div><div class="stat-label">Projects Built</div></div>
+          <div><div class="stat-num">10+</div><div class="stat-label">Tools &amp; Technologies</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTO — replace placeholder once you have a photo -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div class="hero-photo">
+          <!--
+            TO ADD YOUR PHOTO:
+            1. Name your photo  photo.jpg
+            2. Upload photo.jpg to your GitHub repo
+            3. Delete the div.hero-photo-placeholder below
+            4. Uncomment this line:
+            <img src="photo.jpg" alt="Sambridee Mahat">
+          -->
+          <div class="hero-photo-placeholder">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <p>Upload <strong>photo.jpg</strong><br>to your repo</p>
+          </div>
+        </div>
+        <span class="hero-photo-hint">← replace with your photo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">About Me</div>
+      <h2>Turning raw data into<br>reliable infrastructure.</h2>
+    </div>
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <p>
+          I'm a data engineering professional currently pursuing my <strong>MS in Business Analytics</strong> at the University of New Haven, with a perfect 4.0 GPA. My work sits at the intersection of data infrastructure and AI — building the pipelines that feed analytics systems and machine learning models.
+        </p>
+        <p>
+          At <strong>Avkin Inc</strong>, I built automated data pipelines using Python, SQL, and HubSpot APIs, and designed data models that drove executive-level reporting. At <strong>Supreme Lending</strong>, I developed Power BI dashboards backed by SQL Server and optimized stored procedures that cut execution time by 30%.
+        </p>
+        <p>
+          I'm currently expanding into the modern AI-era DE stack — <strong>dbt, Apache Airflow, Kafka, Spark, and vector databases</strong> — and building end-to-end projects to demonstrate that stack in action.
+        </p>
+      </div>
+      <div>
+        <div class="detail-row">
+          <div class="detail-key">Location</div>
+          <div class="detail-val">New Haven, CT</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-key">Currently</div>
+          <div class="detail-val">MS Business Analytics @ UNH</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-key">Focus Area</div>
+          <div class="detail-val">Data Engineering · AI Pipelines</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-key">Open To</div>
+          <div class="detail-val">Full-time DE Roles · Internships</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-key">LinkedIn</div>
+          <div class="detail-val">
+            <a href="https://linkedin.com/in/sambridee-mahat" target="_blank" style="color:var(--accent2);text-decoration:none;">linkedin.com/in/sambridee-mahat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Education</div>
+      <h2>Academic Background</h2>
+    </div>
+    <div class="edu-list fade-up">
+
+      <div class="edu-card">
+        <div class="edu-left">
+          <div class="edu-degree">MS in Business Analytics</div>
+          <div class="edu-school">University of New Haven · New Haven, CT</div>
+          <div class="edu-courses">
+            <strong style="color:var(--text);font-size:12px;letter-spacing:1px;text-transform:uppercase;">Relevant Courses:</strong><br>
+            Database Management for Business Analytics · Supervised Machine Learning · Business Forecasting · Power BI and Dashboarding · Business Analytics
+          </div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-date">Expected Dec 2026</div>
+          <div class="edu-gpa">GPA 4.0</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-left">
+          <div class="edu-degree">BS in Business Analytics</div>
+          <div class="edu-school">University of North Texas · Denton, TX</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-date">Graduated May 2024</div>
+          <div class="edu-gpa">GPA 3.84</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Skills &amp; Tools</div>
+      <h2>The stack I work with.</h2>
+    </div>
+    <div class="skills-grid fade-up">
+      <div class="skill-group">
+        <div class="skill-group-title">Programming &amp; Data</div>
+        <div class="tags">
+          <span class="tag highlight">Python</span>
+          <span class="tag highlight">SQL</span>
+          <span class="tag">R</span>
+          <span class="tag">VBA Macros</span>
+          <span class="tag">PowerShell</span>
+          <span class="tag">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data Engineering &amp; Warehousing</div>
+        <div class="tags">
+          <span class="tag highlight">ETL Pipelines</span>
+          <span class="tag highlight">Snowflake</span>
+          <span class="tag">SSIS</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">Azure Data Fundamentals</span>
+          <span class="tag">Data Modeling</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Analytics &amp; Visualization</div>
+        <div class="tags">
+          <span class="tag highlight">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">SSRS</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Currently Learning</div>
+        <div class="tags">
+          <span class="tag highlight">dbt</span>
+          <span class="tag highlight">Apache Airflow</span>
+          <span class="tag">Apache Kafka</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Pinecone</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">MLflow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Certifications</div>
+      <h2>Credentials &amp; Badges</h2>
+    </div>
+    <div class="certs-grid fade-up">
+
+      <!-- cert 1 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <!--
+            HOW TO ADD CERT IMAGE:
+            1. Screenshot your certificate/badge
+            2. Save as cert-sql.png, upload to GitHub repo
+            3. Replace the placeholder div with: <img src="cert-sql.png" alt="SQL Cert">
+          -->
+          <div class="cert-img-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>cert-sql.png</span>
+          </div>
+        </div>
+        <div class="cert-name">SQL Certification</div>
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-badge">Certified</div>
+      </div>
+
+      <!-- cert 2 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <div class="cert-img-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>cert-excel.png</span>
+          </div>
+        </div>
+        <div class="cert-name">Excel Certification</div>
+        <div class="cert-issuer">Microsoft</div>
+        <div class="cert-badge">Certified</div>
+      </div>
+
+      <!-- cert 3 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <div class="cert-img-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>cert-ga.png</span>
+          </div>
+        </div>
+        <div class="cert-name">Google Analytics Certification</div>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-badge">Certified</div>
+      </div>
+
+      <!-- cert 4 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <div class="cert-img-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>cert-azure.png</span>
+          </div>
+        </div>
+        <div class="cert-name">Azure Data Fundamentals</div>
+        <div class="cert-issuer">Microsoft</div>
+        <div class="cert-badge">Certified</div>
+      </div>
+
+      <!-- upcoming slot 1 -->
+      <div class="cert-slot">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.3"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span>Coming soon<br><em>Google Professional Data Engineer</em></span>
+      </div>
+
+      <!-- upcoming slot 2 -->
+      <div class="cert-slot">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.3"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span>Coming soon<br><em>dbt Certified Developer</em></span>
+      </div>
+
+    </div>
+
+    <div class="certs-note">
+      <strong>To add your certificate images:</strong> Take a screenshot of each badge or certificate, save it as <code>cert-name.png</code>, upload it to your GitHub repo, then replace the placeholder comment in the HTML with <code>&lt;img src="cert-name.png" alt="..."&gt;</code>.
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Projects</div>
+      <h2>What I've built.</h2>
+      <p class="projects-intro">
+        End-to-end data engineering and analytics projects — from ETL pipelines and data warehouses to ML-powered systems. More being added actively.
+      </p>
+    </div>
+    <div class="projects-grid fade-up">
+
+      <a class="project-card" href="https://github.com/sambridee-mahat" target="_blank">
+        <div class="project-status"><span class="dot dot-live"></span> Live</div>
+        <div class="project-title">Marketing Customer Subscription Prediction</div>
+        <p class="project-desc">End-to-end ML pipeline predicting customer subscription behavior. Statistical EDA, feature engineering, preprocessing pipelines, and classification models.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span><span class="project-tag">Pandas</span>
+          <span class="project-tag">Scikit-learn</span><span class="project-tag">NumPy</span><span class="project-tag">EDA</span>
+        </div>
+        <span class="project-link">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sambridee-mahat" target="_blank">
+        <div class="project-status"><span class="dot dot-live"></span> Live</div>
+        <div class="project-title">Integrated Database Design &amp; ETL Automation</div>
+        <p class="project-desc">Designed a star-schema data warehouse with fact and dimensional tables. Implemented SSIS ETL pipelines improving data transfer efficiency by 30%.</p>
+        <div class="project-tags">
+          <span class="project-tag">SQL Server</span><span class="project-tag">SSIS</span>
+          <span class="project-tag">ETL</span><span class="project-tag">Data Modeling</span><span class="project-tag">Star Schema</span>
+        </div>
+        <span class="project-link">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+
+      <div class="project-card wip">
+        <div class="project-status"><span class="dot dot-wip"></span> In Progress</div>
+        <div class="project-title">Real-Time Streaming Analytics Pipeline</div>
+        <p class="project-desc">End-to-end streaming pipeline: Kafka → PySpark → Delta Lake (Medallion architecture) → dbt → dashboard. Processing 1K+ events/min.</p>
+        <div class="project-tags">
+          <span class="project-tag">Kafka</span><span class="project-tag">PySpark</span>
+          <span class="project-tag">Databricks</span><span class="project-tag">dbt</span><span class="project-tag">Airflow</span>
+        </div>
+        <span class="project-link">Coming Soon</span>
+      </div>
+
+      <div class="project-card wip">
+        <div class="project-status"><span class="dot dot-wip"></span> In Progress</div>
+        <div class="project-title">AI-Powered Document Intelligence Pipeline</div>
+        <p class="project-desc">RAG pipeline: document ingestion → chunking → OpenAI embeddings → Pinecone vector store → FastAPI query layer. Full DE foundation underneath.</p>
+        <div class="project-tags">
+          <span class="project-tag">LangChain</span><span class="project-tag">OpenAI API</span>
+          <span class="project-tag">Pinecone</span><span class="project-tag">FastAPI</span><span class="project-tag">Airflow</span>
+        </div>
+        <span class="project-link">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Experience</div>
+      <h2>Where I've worked.</h2>
+    </div>
+    <div class="exp-list fade-up">
+      <div class="exp-item">
+        <div class="exp-date">May 2024 – Jun 2025</div>
+        <div>
+          <div class="exp-role">Marketing Data Associate</div>
+          <div class="exp-company">Avkin Inc · Newport, DE</div>
+          <ul class="exp-bullets">
+            <li>Developed automated data pipelines using Python, SQL, and HubSpot APIs, reducing months of manual data ingestion.</li>
+            <li>Designed data models and KPI frameworks to analyze event performance, deal pipelines, and revenue attribution for executive reporting.</li>
+            <li>Optimized and scheduled SQL-based data transformations using Windows Task Scheduler for near real-time operational insights.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Jun 2023 – Aug 2023</div>
+        <div>
+          <div class="exp-role">Business Intelligence &amp; Analytics Intern</div>
+          <div class="exp-company">Supreme Lending · Dallas, TX</div>
+          <ul class="exp-bullets">
+            <li>Developed Power BI dashboards backed by SQL Server queries to monitor data security risks and operational metrics for leadership.</li>
+            <li>Built a financial model for loan optimization resulting in a 15% increase in profit.</li>
+            <li>Optimized SQL stored procedures, achieving a 30% reduction in execution time for production workloads.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Aug 2023 – Dec 2023</div>
+        <div>
+          <div class="exp-role">Instructional Assistant — Intro to Data Mining</div>
+          <div class="exp-company">University of North Texas · Denton, TX</div>
+          <ul class="exp-bullets">
+            <li>Mentored 30+ students in hypothesis testing, regression, classification, and clustering — improving average assignment performance by ~30%.</li>
+            <li>Supported instructional material development, strengthening technical documentation skills.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Contact</div>
+      <h2>Let's connect.</h2>
+    </div>
+    <div class="contact-grid fade-up">
+      <div>
+        <p class="contact-text">
+          I'm actively looking for data engineering roles and open to internships, collaborations, and conversations about the modern DE stack. Feel free to reach out.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="https://linkedin.com/in/sambridee-mahat" target="_blank">
+            <span class="contact-icon" style="font-weight:700;font-size:13px;">in</span>
+            <span>linkedin.com/in/sambridee-mahat</span>
+          </a>
+          <a class="contact-link" href="https://github.com/sambridee-mahat" target="_blank">
+            <span class="contact-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.576C20.565 21.796 24 17.298 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </span>
+            <span>github.com/sambridee-mahat</span>
+          </a>
+          <a class="contact-link" href="mailto:your@email.com">
+            <span class="contact-icon">✉</span>
+            <span>your@email.com</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <h3>Send a message</h3>
+        <div class="contact-form">
+          <input type="text" placeholder="Your name" />
+          <input type="email" placeholder="Your email" />
+          <textarea placeholder="Your message…"></textarea>
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="alert('Connect this form to Formspree.io — free and takes 5 minutes. See README.')">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Sambridee Mahat · Built and hosted on GitHub Pages · <a href="blog.html" style="color:var(--accent2);text-decoration:none;">Blog</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
+    });
+  });
+</script>
+</body>
+</html>
