@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sambridee Mahat — Data Engineer</title>
+  <title>Sambridee Mahat — Aspiring Data Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
@@ -43,7 +43,7 @@
       font-family: 'DM Serif Display', serif; font-size: 19px;
       color: var(--text); text-decoration: none; letter-spacing: -0.3px;
     }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links { display: flex; gap: 28px; list-: none; }
     .nav-links a {
       text-decoration: none; color: var(--muted);
       font-size: 13px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s;
@@ -284,6 +284,27 @@
       .edu-right { text-align: left; min-width: unset; }
       footer { padding: 28px 22px; }
     }
+
+    /* LIGHTBOX */
+    .lightbox-overlay {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; cursor: zoom-out;
+    }
+  .lightbox-overlay.open { display: flex; }
+  .lightbox-overlay img {
+    max-width: 90vw; max-height: 88vh;
+    object-fit: contain; border: 1px solid #333;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 28px;
+    color: #fff; font-size: 32px; font-weight: 300;
+    cursor: pointer; line-height: 1; user-select: none;
+    opacity: 0.7; transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    
   </style>
 </head>
 <body>
@@ -491,9 +512,8 @@
 
       <!-- cert 1 -->
       <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img src="Pictures/Hackerank_SQL.jpg" alt="SQL Certification">
-            
+        <div class="cert-img-wrap" onclick="openLightbox('Pictures/Hackerank_SQL.jpg', 'SQL Certification')" style="cursor:zoom-in;">
+          <img src="Pictures/Hackerank_SQL.jpg" alt="SQL Certification">            
         </div>
         <div class="cert-name">SQL Certification</div>
         <div class="cert-issuer">HackerRank</div>
@@ -502,9 +522,8 @@
 
       <!-- cert 2 -->
       <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img src="Pictures/snowflake_genAI.jpg" alt="Introduction to Generative AI">
-            
+        <div class="cert-img-wrap" onclick="openLightbox('Pictures/snowflake_genAI.jpg', 'Introduction to Generative AI')" style="cursor:zoom-in;">
+          <img src="Pictures/snowflake_genAI.jpg" alt="Introduction to Generative AI">     
         </div>
         <div class="cert-name">Generative AI Professional Certificate</div>
         <div class="cert-issuer">Snowflake</div>
@@ -513,9 +532,8 @@
 
       <!-- cert 3 -->
       <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img src="Pictures/HypothesisTesting.jpg" alt="Hypothesis Testing">
-            
+        <div class="cert-img-wrap" onclick="openLightbox('Pictures/HypothesisTesting.jpg', 'Hypothesis Testing')" style="cursor:zoom-in;">
+          <img src="Pictures/HypothesisTesting.jpg" alt="Hypothesis Testing">            
         </div>
         <div class="cert-name">Hypothesis Testing in R</div>
         <div class="cert-issuer"Datacamp</div>
@@ -770,7 +788,28 @@
     alert('Something went wrong. Please try again or email me directly.');
   }
 }
+
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
   
 </script>
+
+<!-- LIGHTBOX OVERLAY -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+  
 </body>
 </html>
