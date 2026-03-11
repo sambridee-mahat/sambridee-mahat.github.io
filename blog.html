@@ -83,21 +83,7 @@
     .empty-state h3 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.5px; margin-bottom: 14px; color: var(--text); }
     .empty-state p { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 400px; margin: 0 auto 28px; }
 
-    /* HOW TO ADD POSTS */
-    .add-post-guide {
-      margin-top: 60px; padding: 32px 36px;
-      background: var(--surface); border: 1px solid var(--border);
-    }
-    .add-post-guide h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 18px; letter-spacing: -0.4px; }
-    .guide-steps { display: flex; flex-direction: column; gap: 14px; }
-    .guide-step { display: flex; gap: 16px; align-items: flex-start; }
-    .step-num {
-      width: 26px; height: 26px; border-radius: 50%;
-      background: var(--text); color: #fff;
-      font-size: 12px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 1px;
-    }
+  
     .guide-step p { font-size: 15px; color: var(--muted); line-height: 1.7; }
     .guide-step code { font-size: 13px; background: var(--tag-bg); padding: 1px 7px; border-radius: 2px; color: var(--text); }
 
@@ -141,16 +127,6 @@
 <div class="posts-section">
   <div class="container">
 
-    <!-- ═══════════════════════════════════════════════
-         POSTS LIST
-         To add a new post:
-         1. Copy the .post-item block below
-         2. Update date, tag, title, excerpt, and link
-         3. Create a new file like  blog-post-1.html
-            (copy the post template at the bottom of this file)
-         4. Upload both files to GitHub
-    ════════════════════════════════════════════════ -->
-
     <div class="posts-list fade-up">
 
       <!--
@@ -179,30 +155,7 @@
       </div>
 
     </div>
-
-    <!-- HOW TO ADD POSTS GUIDE -->
-    <div class="add-post-guide fade-up">
-      <h3>How to publish a blog post</h3>
-      <div class="guide-steps">
-        <div class="guide-step">
-          <div class="step-num">1</div>
-          <p>Copy the file <code>blog-post-template.html</code> and rename it something like <code>blog-dbt-learnings.html</code>.</p>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">2</div>
-          <p>Edit the title, date, and body content inside the template. Use plain HTML — headings, paragraphs, and code blocks are all pre-styled.</p>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">3</div>
-          <p>In this file (<code>blog.html</code>), copy the sample post block above, uncomment it, and update the <code>href</code>, title, date, and excerpt to match your new post.</p>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">4</div>
-          <p>Upload both files to your GitHub repo. Your post will appear live within 30 seconds.</p>
-        </div>
-      </div>
-    </div>
-
+  
   </div>
 </div>
 
