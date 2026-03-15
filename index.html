@@ -197,7 +197,7 @@
 
     /* PROJECTS */
     .projects-intro { font-size: 17px; color: var(--muted); margin-bottom: 40px; max-width: 600px; line-height: 1.8; }
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     .project-card {
       background: var(--surface); border: 1px solid var(--border);
       padding: 30px; display: flex; flex-direction: column;
@@ -562,8 +562,10 @@
         End-to-end data engineering and analytics projects — from ETL pipelines and data warehouses to ML-powered systems. More being added actively.
       </p>
     </div>
-    <div class="projects-grid fade-up">
-<!------------------------------------------------------------->
+
+    <div class="projects-grid fade-up" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+
+      <!------------------------------------------------------------->
       <a class="project-card" href="https://github.com/sambridee-mahat/Direct--Bank-Marketing" target="_blank">
         <div class="project-status"><span class="dot dot-live"></span> Live</div>
         <div class="project-title">Marketing Customer Subscription Prediction</div>
@@ -574,7 +576,8 @@
         </div>
         <span class="project-link">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
-<!------------------------------------------------------------->
+
+      <!------------------------------------------------------------->
       <a class="project-card" href="https://github.com/sambridee-mahat/Database-Design-and-ETL-Package" target="_blank">
         <div class="project-status"><span class="dot dot-live"></span> Live</div>
         <div class="project-title">Integrated Database Design &amp; ETL Automation</div>
@@ -585,85 +588,90 @@
         </div>
         <span class="project-link">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
-<!------------------------------------------------------------->
+
+      <!------------------------------------------------------------->
       <div class="project-card">
-  <div class="project-status"><span class="dot dot-live"></span> Live</div>
-  <div class="project-title">Power BI E-commerce Data Visualization</div>
-  <p class="project-desc">Brazilian E-commerce data analysis — exploring sales trends, delivery performance, customer distribution, and revenue patterns across product categories.</p>
-  <div class="project-tags">
-    <span class="project-tag">Power BI</span><span class="project-tag">DAX</span>
-    <span class="project-tag">Data Models</span><span class="project-tag">dbt</span><span class="project-tag">Data Manipulation</span>
-  </div>
-  <div style="position:relative; width:100%; padding-bottom:85%; height:0; overflow:hidden; margin:16px 0;">
-    <iframe
-      title="EcommerceDatasetAnalysis"
-      src="https://app.powerbi.com/view?r=eyJrIjoiNWY5N2NjYjgtMTc5OC00N2IzLWI4NDMtMjg4OTQ1OGQzZWExIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9&pageName=68db9ba9dea1643a0394"
-      frameborder="0"
-      allowFullScreen="true"
-      style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #E8E4DE;">
-    </iframe>
-  </div>
-  <a class="project-link" href="https://app.powerbi.com/view?r=eyJrIjoiNWY5N2NjYjgtMTc5OC00N2IzLWI4NDMtMjg4OTQ1OGQzZWExIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9" target="_blank">
-    Open full dashboard
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
-<!------------------------------------------------------------->
-<div class="project-card">
-  <div class="project-status"><span class="dot dot-live"></span> Live</div>
-  <div class="project-title">Power BI WorldBank Data Summary</div>
-  <p class="project-desc">WorldBank Data Analytics — exploring top countries with imports, exports, GDP, and fastest growing economies.</p>
-  <div class="project-tags">
-    <span class="project-tag">Power BI</span><span class="project-tag">DAX</span>
-    <span class="project-tag">Data Models</span><span class="project-tag">dbt</span><span class="project-tag">Data Manipulation</span>
-  </div>
-  <div style="position:relative; width:100%; padding-bottom:85%; height:0; overflow:hidden; margin:16px 0;">
-    <iframe
-      title="WorldBank Data Analytics"
-      src="https://app.powerbi.com/view?r=eyJrIjoiYTkxMDU2YWEtOGI1NC00ZDY4LTlhYTgtMWIxNGJhYTNjY2ZiIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9&pageName=e0089418b0a16a10cada"
-      frameborder="0"
-      allowFullScreen="true"
-      style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #E8E4DE;">
-    </iframe>
-  </div>
-  <a class="project-link" href="https://app.powerbi.com/view?r=eyJrIjoiYTkxMDU2YWEtOGI1NC00ZDY4LTlhYTgtMWIxNGJhYTNjY2ZiIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9" target="_blank">
-    Open full dashboard
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
-<!------------------------------------------------------------->
-  <div class="project-card">
-  <div class="project-status"><span class="dot dot-live"></span> Live</div>
-  <div class="project-title">Exponential Smoothing on Australian Wine Dataset</div>
-  <p class="project-desc">Time series forecasting of Australian red wine sales using ETS models — comparing Holt-Winters Multiplicative, Additive, and Damped methods against a seasonal naïve benchmark.</p>
-  <div class="project-tags">
-    <span class="project-tag">R</span>
-    <span class="project-tag">Time Series</span>
-    <span class="project-tag">ETS</span>
-    <span class="project-tag">Forecasting</span>
-    <span class="project-tag">fable</span>
-  </div>
-  <div style="position:relative; width:100%; padding-bottom:85%; height:0; overflow:hidden; margin:16px 0;">
-    <iframe
-      title="Exponential Smoothing on Australian Wine Dataset"
-      src="https://sambridee-mahat.github.io/projects/wine-forecasting/ForecastingAnalysis.html"
-      frameborder="0"
-      allowFullScreen="true"
-      style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #E8E4DE;">
-    </iframe>
-  </div>
-  <div style="display:flex; justify-content:space-between; align-items:center;">
-  <a class="project-link" href="https://sambridee-mahat.github.io/projects/wine-forecasting/ForecastingAnalysis.html" target="_blank">
-    Open full report
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-  <a class="project-link" href="https://github.com/sambridee-mahat/Time-Series-Analysis-Australian-Wine-Dataset" target="_blank">
-    Project details
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
-<!------------------------------------------------------------->
-       <div class="project-card wip">
+        <div class="project-status"><span class="dot dot-live"></span> Live</div>
+        <div class="project-title">Power BI E-commerce Data Visualization</div>
+        <p class="project-desc">Brazilian E-commerce data analysis — exploring sales trends, delivery performance, customer distribution, and revenue patterns across product categories.</p>
+        <div class="project-tags">
+          <span class="project-tag">Power BI</span><span class="project-tag">DAX</span>
+          <span class="project-tag">Data Models</span><span class="project-tag">dbt</span><span class="project-tag">Data Manipulation</span>
+        </div>
+        <div style="position:relative; width:100%; padding-bottom:55%; height:0; overflow:hidden; margin:16px 0;">
+          <iframe
+            title="EcommerceDatasetAnalysis"
+            src="https://app.powerbi.com/view?r=eyJrIjoiNWY5N2NjYjgtMTc5OC00N2IzLWI4NDMtMjg4OTQ1OGQzZWExIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9&pageName=68db9ba9dea1643a0394"
+            frameborder="0"
+            allowFullScreen="true"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #E8E4DE;">
+          </iframe>
+        </div>
+        <a class="project-link" href="https://app.powerbi.com/view?r=eyJrIjoiNWY5N2NjYjgtMTc5OC00N2IzLWI4NDMtMjg4OTQ1OGQzZWExIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9" target="_blank">
+          Open full dashboard
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!------------------------------------------------------------->
+      <div class="project-card">
+        <div class="project-status"><span class="dot dot-live"></span> Live</div>
+        <div class="project-title">Power BI WorldBank Data Summary</div>
+        <p class="project-desc">WorldBank Data Analytics — exploring top countries with imports, exports, GDP, and fastest growing economies.</p>
+        <div class="project-tags">
+          <span class="project-tag">Power BI</span><span class="project-tag">DAX</span>
+          <span class="project-tag">Data Models</span><span class="project-tag">dbt</span><span class="project-tag">Data Manipulation</span>
+        </div>
+        <div style="position:relative; width:100%; padding-bottom:55%; height:0; overflow:hidden; margin:16px 0;">
+          <iframe
+            title="WorldBank Data Analytics"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYTkxMDU2YWEtOGI1NC00ZDY4LTlhYTgtMWIxNGJhYTNjY2ZiIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9&pageName=e0089418b0a16a10cada"
+            frameborder="0"
+            allowFullScreen="true"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #E8E4DE;">
+          </iframe>
+        </div>
+        <a class="project-link" href="https://app.powerbi.com/view?r=eyJrIjoiYTkxMDU2YWEtOGI1NC00ZDY4LTlhYTgtMWIxNGJhYTNjY2ZiIiwidCI6IjcwZGUxOTkyLTA3YzYtNDgwZi1hMzE4LWExYWZjYmEwMzk4MyIsImMiOjN9" target="_blank">
+          Open full dashboard
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!------------------------------------------------------------->
+      <div class="project-card">
+        <div class="project-status"><span class="dot dot-live"></span> Live</div>
+        <div class="project-title">Exponential Smoothing on Australian Wine Dataset</div>
+        <p class="project-desc">Time series forecasting of Australian red wine sales using ETS models — comparing Holt-Winters Multiplicative, Additive, and Damped methods against a seasonal naïve benchmark.</p>
+        <div class="project-tags">
+          <span class="project-tag">R</span>
+          <span class="project-tag">Time Series</span>
+          <span class="project-tag">ETS</span>
+          <span class="project-tag">Forecasting</span>
+          <span class="project-tag">fable</span>
+        </div>
+        <div style="position:relative; width:100%; padding-bottom:55%; height:0; overflow:hidden; margin:16px 0;">
+          <iframe
+            title="Exponential Smoothing on Australian Wine Dataset"
+            src="https://sambridee-mahat.github.io/projects/wine-forecasting/ForecastingAnalysis.html"
+            frameborder="0"
+            allowFullScreen="true"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #E8E4DE;">
+          </iframe>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <a class="project-link" href="https://sambridee-mahat.github.io/projects/wine-forecasting/ForecastingAnalysis.html" target="_blank">
+            Open full report
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a class="project-link" href="https://github.com/sambridee-mahat/Time-Series-Analysis-Australian-Wine-Dataset" target="_blank">
+            Project details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!------------------------------------------------------------->
+      <div class="project-card wip">
         <div class="project-status"><span class="dot dot-wip"></span> In Progress</div>
         <div class="project-title">Real-Time Streaming Analytics Pipeline</div>
         <p class="project-desc">End-to-end streaming pipeline: Kafka → PySpark → Delta Lake (Medallion architecture) → dbt → dashboard. Processing 1K+ events/min.</p>
